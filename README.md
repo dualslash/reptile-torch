@@ -4,7 +4,9 @@ This is a PyTorch Implementation of the Meta-Learning Algorithm proposed in the 
 
 This code has been produced as part of the paper *'Meta-Learning Informative Priors for Bayesian Optimization'*, concerning the topic of Automated Machine Learning. For any questions or remarks feel free to contact the original author of the paper.
 
-<center><sub><sup>This project is licensed under the MIT License. Any reproduction of this work should reference the original author(s).
+<p align="center">
+<sub><sup>This project is licensed under the MIT License. Any reproduction of this work should reference the original author(s).</sup></sub>
+</p>
 
 
 # Methodology
@@ -13,21 +15,10 @@ We provide a parallelized version of the [batched Reptile algorithm by Nichol & 
 
 ## Meta-Learning
 
-The basic principle that is utilized by Reptile is that of Meta-Learning. The conceptual framework around this method is that we can derive a better estimate for the initialization parameters $\theta$ of a neural network by training those initializations on a generalized task structure.
+The basic principle that is utilized by Reptile is that of Meta-Learning. The conceptual framework around this method is that we can derive a better estimate for the initialization parameters θ of a neural network by training those initializations on a generalized task structure.
+
 <p align="center">
-
-```mermaid
-graph LR
-Z[θt-1] -- δℒ --> A
-A[θt] -- τi --> B(φi)
-A -- τn --> C(φn)
-A -- τ1 --> E(φ1)
-E -- δℓ φ1 --> D
-B -- δℓ φi --> D[θt+1]
-C -- δℓ φn --> D
-D -- δℒ --> F[θt+2]
-```
-
+<img src="./img/diagram.svg">
 </p>
 
 Pre-training the initialization parameters of a neural network through Meta-Learning allows for convergence using significantly less data points. The paper ['Provable Guarantees for Gradient-Based Meta-Learning'](Provable%20Guarantees%20for%20Gradient-Based%20Meta-Learning) further argues that generalization of the Meta-Learned parameters improve with task-similarity. 
@@ -43,11 +34,11 @@ The Reptile algorithm is a variant of the MAML algorithm from the paper ['Model-
 > ## *Parallel Batched Reptile* 
 > 1. &nbsp; Randomly Initialize Weight Parameters $\theta$
 > 2. &nbsp; **for** Iteration = 1, 2, ... **do**
-> 3. &nbsp; &nbsp; &nbsp; &nbsp; Sample Task Batch $\tau_1, \tau_2, ... , \tau_n$
-> 4. &nbsp; &nbsp; &nbsp; &nbsp; **for** Task = $\tau_1, \tau_2, ... , \tau_n$ **do**
-> 5. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $W_i = \text{SGD}(\mathcal{L}_{\tau_i}, \theta,k)$
+> 3. &nbsp; &nbsp; &nbsp; &nbsp; Sample Task Batch τ<sub>1</sub>, τ<sub>2</sub>, ... , τ<sub>n</sub>
+> 4. &nbsp; &nbsp; &nbsp; &nbsp; **for** Task = τ<sub>1</sub>, τ<sub>2</sub>, ... , τ<sub>n</sub> **do**
+> 5. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="./img/batchgradient.svg">
 > 6. &nbsp; &nbsp; &nbsp; &nbsp; **end**
-> 7. &nbsp; &nbsp; &nbsp; &nbsp; $\theta \leftarrow \theta + \alpha \frac{1}{k} \sum^{n}_{i=1}(W_i - \theta)$
+> 7. &nbsp; &nbsp; &nbsp; &nbsp; <img src="./img/metaupdate.svg">
 > 8. &nbsp; **end**
 
 Note here we batch for single gradient steps, taking more gradient steps before updating the initialization parameters would require computation of the n<sup>th</sup> order derivative.
@@ -75,15 +66,19 @@ This project requires the following specs and libraries to function:
 
 ## Defining Tasks
 
-Defining tasks is rather straightforward, in the notebook we have provided there is an example of a logistic distribution task which models the logistic distribution function given a sample of points $x_1, x_2, ... x_n$.
-$$f(x)=\dfrac{L}{1+e^{-k(x-x_0)}}$$
+Defining tasks is rather straightforward, in the notebook we have provided there is an example of a logistic distribution task which models the logistic distribution function given a sample of points x<sub>1</sub>, x<sub>2</sub>, ... x<sub>n</sub>.
+
+
+<p align="center">
+<img src="./img/logistic.svg">
+</p>
 
 Which translates into
 
     def  logistic(x, theta):
 	    return theta[0]/(1 + np.exp(-1 * theta[1] * (x - theta[2])))
 	    
-Here $\theta_0 = L$, $\theta_1 = k$ and $\theta_2 = x_0$, which are the parameters that can vary across the tasks of this class. To Meta-Learn from this task, we randomly sample tasks from this class from uniformly sampled task parameters $\theta_i$. 
+Here θ<sub>0</sub> = L, θ<sub>1</sub> = k and θ<sub>2</sub> = x<sub>0</sub>, which are the parameters that can vary across the tasks of this class. To Meta-Learn from this task, we randomly sample tasks from this class from uniformly sampled task parameters θ<sub>i</sub>. 
 
 ## Running Experiments
 
