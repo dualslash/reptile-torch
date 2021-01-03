@@ -12,7 +12,7 @@
 
 Reptile Torch is a PyTorch Implementation of the Meta-Learning Algorithm proposed in the paper ['Reptile: A Scalable Meta-Learning Algorithm'](https://openai.com/blog/reptile/) by [Alex Nichol](https://openai.com/blog/authors/alex/) and [John Schulman](https://openai.com/blog/authors/john/) from [OpenAI](https://openai.com/).
 
-This code has been produced as part of the paper *'Meta-Learning Informative Priors for Bayesian Optimization'*, concerning the topic of Automated Machine Learning. For any questions or remarks feel free to contact the original author of the paper.
+This code has been produced as part of the paper *'Meta-Learning Conjugate Priors for Few-Shot Bayesian Optimization'*, concerning the topic of Automated Machine Learning. For any questions or remarks feel free to contact the original author of the paper.
 
 <p align="center">
 <sub><sup>This project is licensed under the MIT License. Any reproduction of this work should reference the original author(s).</sup></sub>
