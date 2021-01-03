@@ -1,6 +1,16 @@
-﻿# Reptile-Torch
+# Reptile-Torch
+ 
+![reptile-banner](./img/banner.png)
+ 
+<div align="center">
+	
 
-This is a PyTorch Implementation of the Meta-Learning Algorithm proposed in the paper ['Reptile: A Scalable Meta-Learning Algorithm'](https://openai.com/blog/reptile/) by [Alex Nichol](https://openai.com/blog/authors/alex/) and [John Schulman](https://openai.com/blog/authors/john/) from [OpenAI](https://openai.com/).
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](https://github.com/dualslash/reptile-torch/blob/main/LICENSE)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fdualslash%2Freptile-torch&count_bg=%2397CA00&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true)](https://hits.seeyoufarm.com)
+
+</div>
+
+Reptile Torch is a PyTorch Implementation of the Meta-Learning Algorithm proposed in the paper ['Reptile: A Scalable Meta-Learning Algorithm'](https://openai.com/blog/reptile/) by [Alex Nichol](https://openai.com/blog/authors/alex/) and [John Schulman](https://openai.com/blog/authors/john/) from [OpenAI](https://openai.com/).
 
 This code has been produced as part of the paper *'Meta-Learning Informative Priors for Bayesian Optimization'*, concerning the topic of Automated Machine Learning. For any questions or remarks feel free to contact the original author of the paper.
 
@@ -94,7 +104,5 @@ The following parameters are  available and their defaults:
 | Outer Iterations | 10,000      | Sample Radius         | 4    |
 | Meta Batch Size  | 10          | Sample Count          | 100  |
 | Model Size       | 32          | Task            |   Logistic |
-
-
 
 
